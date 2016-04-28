@@ -58,11 +58,6 @@ if [ "$1" = "purge" ]; then
     fi
 
     rmdir --ignore-fail-on-non-empty /etc/glpi || true
-
-    rm -f /usr/share/glpi/config
-    rm -f /usr/share/glpi/files
-
-    rm -f /etc/glpi/config/config_db.php
 fi
 
 

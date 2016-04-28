@@ -1,6 +1,6 @@
 <?php
 // Config
-define('GLPI_CONFIG_DIR',     '/etc/glpi');
+define('GLPI_CONFIG_DIR',     '/etc/glpi/config');
 
 // Runtime Data
 define('GLPI_DOC_DIR',        '/var/lib/glpi/files');
@@ -21,8 +21,10 @@ define('GLPI_LOG_DIR',        '/var/log/glpi');
 // System libraries
 define('GLPI_PHPMAILER_DIR',  '/usr/share/php/libphp-phpmailer/');
 define('GLPI_PHPCAS',         '/usr/share/php/CAS/');
+define('GLPI_EZC_BASE',       '/usr/share/php/ezc/Base/base.php');
 define('GLPI_SIMPLEPIE_PATH', '/usr/share/php/simplepie');
 define('GLPI_TCPDF_DIR',      '/usr/share/php/tcpdf');;
+
 
 // Fonts
 define('GLPI_FONT_FREESANS',  '/usr/share/fonts/truetype/freefont/FreeSans.ttf');

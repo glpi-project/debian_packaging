@@ -94,8 +94,9 @@ if [ "$1" = "configure" ]; then
         done
     fi
 
+    ln -s /etc/glpi/logrotate.conf /etc/logrotate.d/glpi
 
-    APACHE_USER=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}')
+    APACHE_USER=$(ps axho user:30,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}')
 
     dbc_first_version="0.72"
     . /usr/share/dbconfig-common/dpkg/postinst.mysql
@@ -107,12 +108,10 @@ if [ "$1" = "configure" ]; then
 
     db_stop
 
-    [ -L /usr/share/glpi/files ] || ln -s /var/lib/glpi/files /usr/share/glpi/files
-    [ -L /usr/share/glpi/config ] || ln -s /etc/glpi/config /usr/share/glpi/config
-
     # fix ownership
-    chown -R $APACHE_USER:root /var/lib/glpi
     chown -R $APACHE_USER:root /etc/glpi/config
+    chown -R $APACHE_USER:root /var/lib/glpi
+    chown -R $APACHE_USER:root /var/log/glpi
 
     for webserver in $reload_servers; do
         webserver=${webserver%,}

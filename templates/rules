@@ -7,6 +7,7 @@
 DESTDIR=$(CURDIR)/debian/glpi
 GDIR=$(DESTDIR)/usr/share/glpi
 GCONFDIR=$(DESTDIR)/etc/glpi
+GCONFDIR2=$(DESTDIR)/etc/glpi/config
 GVARDIR=$(DESTDIR)/var/lib/glpi
 GLOGDIR=$(DESTDIR)/var/log/glpi
 
@@ -24,6 +25,7 @@ install: build
 	# Add here commands to install the package into debian/glpi.
 	install -m 755 -d $(GDIR)
 	install -m 755 -d $(GCONFDIR)
+	install -m 755 -d $(GCONFDIR2)
 	install -m 755 -d $(GVARDIR)
 	install -m 755 -d $(GLOGDIR)
 	install -m 644 *.php $(GDIR)
@@ -34,11 +36,7 @@ install: build
 			 CVS|debian) \
 			echo "skipping dir $$dir" \
 			;; \
-			 files/_logs) \
-			cp -ar $$dir $(GLOGDIR)/$$dir ; \
-			find $(GLOGDIR)/$$dir -type d -exec chmod 750 {} \; ;\;; \
 			 files) \
-			;; \
 			cp -ar $$dir $(GVARDIR)/$$dir ; \
 			find $(GVARDIR)/$$dir -type d -exec chmod 750 {} \; ;\
 			;; \
@@ -50,6 +48,7 @@ install: build
 	done
 	install -m 644 debian/config_path.php $(DESTDIR)/usr/share/glpi/config/
 	install -m 644 debian/apache.conf $(GCONFDIR)
+	install -m 644 debian/logrotate.conf $(GCONFDIR)
 	install -m 644 debian/mysql.conf $(DESTDIR)/usr/share/glpi/install/
 	chmod +x $(DESTDIR)/usr/share/glpi/scripts/*.sh
 	# dbconfig stuff
@@ -57,6 +56,8 @@ install: build
 	# set default language to english
 	sed -i -e 's/fr_FR/en_GB/' \
 		$(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
+	#remove log folder
+	rm -rf $(GDIR)/files/_logs
 	# small fix: remove copy of LGPL
 	rm -f $(GDIR)/lib/extjs/license.txt
 	# delete remove.txt files
@@ -66,6 +67,12 @@ install: build
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpmailer
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/simplepie
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/tcpdf
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/zeta
+	# regenerate gettext files
+	for po in $(DESTDIR)/usr/share/glpi/locales/*.po ; do \
+		msgfmt $$po -o $$(dirname $$po)/$$(basename $$po .po).mo ; \
+		chmod 644 $$(dirname $$po)/$$(basename $$po .po).mo ; \
+	done
 
 build-arch: build
 build-indep: build

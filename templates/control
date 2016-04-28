@@ -2,7 +2,8 @@ Source: glpi
 Section: web
 Priority: optional
 Maintainer: __FULLNAME__ <__MAIL__>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9),
+    gettext
 Standards-Version: 3.9.6
 Homepage: http://glpi-project.org
 #Vcs-Git: git://anonscm.debian.org/collab-maint/glpi.git
@@ -13,15 +14,19 @@ Architecture: any
 Depends: apache2 | apache | apache-ssl | apache-perl | httpd,
     php5 | php5-cgi | libapache2-mod-php5,
     php5-cli,
+    php5-common,
+    php5-gd,
+    php5-imap,
+    php5-ldap,
     php5-mysql | php5-mysqlnd,
     debconf (>= 0.2.26) | debconf-2.0,
     dbconfig-common,
     fonts-freefont-ttf,
-    tinymce,
     libphp-phpmailer,
     libphp-simplepie,
     php-cas,
     php-tcpdf,
+    php-zeta-base,
     logrotate,
     ${misc:Depends}
 Recommends: mysql-client,

@@ -40,7 +40,7 @@ cd ..
 sudo pbuilder build *.dsc
 
 # move deb files
-mv *.deb ../packages
+sudo mv /var/cache/pbuilder/result/* ../packages
 
 # clean (removed untracked files and folders)
 #git clean -f -d

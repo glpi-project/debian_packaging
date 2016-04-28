@@ -9,11 +9,6 @@ if [ "$1" = "configure" ]; then
 
     reload_servers=""
 
-    #  Convert /usr/share/glpi/lib/extjs to a symlink on upgrades. (see: #699644)
-    if [ ! -L /usr/share/glpi/lib/extjs ] && [ -d /usr/share/glpi/lib/extjs ]; then
-        rm -rf --one-file-system /usr/share/glpi/lib/extjs
-        ln -s ../../javascript/extjs /usr/share/glpi/lib/extjs
-    fi
 
     # configuration for apache 2.4
     if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
@@ -100,11 +95,13 @@ if [ "$1" = "configure" ]; then
     fi
 
 
+    APACHE_USER=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}')
+
     dbc_first_version="0.72"
     . /usr/share/dbconfig-common/dpkg/postinst.mysql
     dbc_generate_include=template:/etc/glpi/config/config_db.php
     dbc_generate_include_args="-U -o template_infile='/usr/share/glpi/install/mysql.conf'"
-    dbc_generate_include_owner="root:www-data"
+    dbc_generate_include_owner="root:$APACHE_USER"
     dbc_generate_include_perms="0660"
     dbc_go glpi $@
 
@@ -114,8 +111,8 @@ if [ "$1" = "configure" ]; then
     [ -L /usr/share/glpi/config ] || ln -s /etc/glpi/config /usr/share/glpi/config
 
     # fix ownership
-    chown -R www-data:root /var/lib/glpi
-    chown -R www-data:root /etc/glpi/config
+    chown -R $APACHE_USER:root /var/lib/glpi
+    chown -R $APACHE_USER:root /etc/glpi/config
 
     for webserver in $reload_servers; do
         webserver=${webserver%,}

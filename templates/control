@@ -19,8 +19,10 @@ Depends: apache2 | apache | apache-ssl | apache-perl | httpd,
     fonts-freefont-ttf,
     tinymce,
     libphp-phpmailer,
-    libjs-extjs,
-    tinymce,
+    libphp-simplepie,
+    php-cas,
+    php-tcpdf,
+    logrotate,
     ${misc:Depends}
 Recommends: mysql-client,
     mysql-server

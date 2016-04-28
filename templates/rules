@@ -8,6 +8,7 @@ DESTDIR=$(CURDIR)/debian/glpi
 GDIR=$(DESTDIR)/usr/share/glpi
 GCONFDIR=$(DESTDIR)/etc/glpi
 GVARDIR=$(DESTDIR)/var/lib/glpi
+GLOGDIR=$(DESTDIR)/var/log/glpi
 
 clean:
 	dh_testdir
@@ -24,6 +25,7 @@ install: build
 	install -m 755 -d $(GDIR)
 	install -m 755 -d $(GCONFDIR)
 	install -m 755 -d $(GVARDIR)
+	install -m 755 -d $(GLOGDIR)
 	install -m 644 *.php $(GDIR)
 	install -m 644 *.js $(GDIR)
 	for dir in * ; do \
@@ -32,11 +34,11 @@ install: build
 			 CVS|debian) \
 			echo "skipping dir $$dir" \
 			;; \
-			 config) \
-			cp -ar $$dir $(GCONFDIR)/$$dir ; \
-			find $(GCONFDIR)/$$dir -type d -exec chmod 750 {} \; ;\
-			;; \
+			 files/_logs) \
+			cp -ar $$dir $(GLOGDIR)/$$dir ; \
+			find $(GLOGDIR)/$$dir -type d -exec chmod 750 {} \; ;\;; \
 			 files) \
+			;; \
 			cp -ar $$dir $(GVARDIR)/$$dir ; \
 			find $(GVARDIR)/$$dir -type d -exec chmod 750 {} \; ;\
 			;; \
@@ -46,6 +48,7 @@ install: build
 		esac \
 		 fi \
 	done
+	install -m 644 debian/config_path.php $(DESTDIR)/usr/share/glpi/config/
 	install -m 644 debian/apache.conf $(GCONFDIR)
 	install -m 644 debian/mysql.conf $(DESTDIR)/usr/share/glpi/install/
 	chmod +x $(DESTDIR)/usr/share/glpi/scripts/*.sh
@@ -55,16 +58,14 @@ install: build
 	sed -i -e 's/fr_FR/en_GB/' \
 		$(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
 	# small fix: remove copy of LGPL
-	rm -f $(GDIR)/lib/scriptaculous/MIT-LICENSE
-	rm -f $(GDIR)/lib/cache_lite/LICENSE
 	rm -f $(GDIR)/lib/extjs/license.txt
 	# delete remove.txt files
 	find $(DESTDIR) -name remove.txt -exec rm -f {} \;
 	# remove copy of libraries
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpcas
-	rm -rf $(DESTDIR)/usr/share/glpi/lib/tiny_mce
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpmailer
-	rm -rf $(DESTDIR)/usr/share/glpi/lib/extjs
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/simplepie
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/tcpdf
 
 build-arch: build
 build-indep: build

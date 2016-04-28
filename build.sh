@@ -55,4 +55,4 @@ sudo mv /var/cache/pbuilder/result/* ../packages
 
 
 # clean (removed untracked files and folders)
-git clean -f -d
+#git clean -f -d

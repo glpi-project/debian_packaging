@@ -1,0 +1,45 @@
+Source: glpi
+Section: web
+Priority: optional
+Maintainer: Alexandre DELAUNAY <adelaunay@adelaunay-ThinkPad-Edge-E320>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://glpi-project.org
+#Vcs-Git: git://anonscm.debian.org/collab-maint/glpi.git
+#Vcs-Browser: https://anonscm.debian.org/gitweb/?p=collab-maint/glpi.git;a=summary
+
+Package: glpi
+Architecture: any
+Depends: apache2 | apache | apache-ssl | apache-perl | httpd,
+    php5 | php5-cgi | libapache2-mod-php5,
+    php5-cli,
+    php5-mysql | php5-mysqlnd,
+    debconf (>= 0.2.26) | debconf-2.0,
+    dbconfig-common,
+    fonts-freefont-ttf,
+    tinymce,
+    libphp-phpmailer,
+    libjs-extjs,
+    tinymce,
+    ${misc:Depends}
+Recommends: mysql-client,
+    mysql-server
+Description: GLPi is a Free Asset and IT Management Software package
+ GLPi stands for **Gestionnaire Libre de Parc Informatique** is a Free Asset and IT Management Software package, that provides ITIL Service Desk features, licenses tracking and software auditing.
+ .
+ GLPi features:
+ * Multilingual support: 45 translations available
+ * Inventory of computers, peripherals, network printers and any associated components through an interface, with inventory tools such as: OCS Inventory or FusionInventory
+ * Assignment of equipment by geographical area to users and groups
+ * Item lifecycle management
+ * Asset reservation
+ * Licenses management (ITIL compliant)
+ * Management of warranty and financial information (purchase order, warranty and extension, damping)
+ * Management of contracts, contacts, documents related to inventory items
+ * Incidents, requests, problems and changes management
+ * Ticket creation through emails, end-user or technician interface
+ * Ticket lifecycle (assignment, tickets scheduling, solutions, etc.)
+ * Knowledge base and Frequently-Asked Questions (FAQ)
+ * Report generator: hardware, network or interventions (support)
+ .
+ Moreover, GLPi supports many [plugins](http://plugins.glpi-project.org) that provide additional features.

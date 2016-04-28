@@ -1,0 +1,96 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DESTDIR=$(CURDIR)/debian/glpi
+GDIR=$(DESTDIR)/usr/share/glpi
+GCONFDIR=$(DESTDIR)/etc/glpi
+GVARDIR=$(DESTDIR)/var/lib/glpi
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	# Add here commands to install the package into debian/glpi.
+	install -m 755 -d $(GDIR)
+	install -m 755 -d $(GCONFDIR)
+	install -m 755 -d $(GVARDIR)
+	install -m 644 *.php $(GDIR)
+	install -m 644 *.js $(GDIR)
+	for dir in * ; do \
+		 if [ -d "$$dir" ]; then \
+			  case "$$dir" in \
+			 CVS|debian) \
+			echo "skipping dir $$dir" \
+			;; \
+			 config) \
+			cp -ar $$dir $(GCONFDIR)/$$dir ; \
+			find $(GCONFDIR)/$$dir -type d -exec chmod 750 {} \; ;\
+			;; \
+			 files) \
+			cp -ar $$dir $(GVARDIR)/$$dir ; \
+			find $(GVARDIR)/$$dir -type d -exec chmod 750 {} \; ;\
+			;; \
+			 *) \
+			cp -ar $$dir $(GDIR)/$$dir ; \
+			find $(GDIR)/$$dir -type f -exec chmod 644 {} \; ;\
+		esac \
+		 fi \
+	done
+	install -m 644 debian/apache.conf $(GCONFDIR)
+	install -m 644 debian/mysql.conf $(DESTDIR)/usr/share/glpi/install/
+	chmod +x $(DESTDIR)/usr/share/glpi/scripts/*.sh
+	# dbconfig stuff
+	install -m 644 install/mysql/glpi-0.90-empty.sql $(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
+	# set default language to english
+	sed -i -e 's/fr_FR/en_GB/' \
+		$(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
+	# small fix: remove copy of LGPL
+	rm -f $(GDIR)/lib/scriptaculous/MIT-LICENSE
+	rm -f $(GDIR)/lib/cache_lite/LICENSE
+	rm -f $(GDIR)/lib/extjs/license.txt
+	# delete remove.txt files
+	find $(DESTDIR) -name remove.txt -exec rm -f {} \;
+	# remove copy of libraries
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpcas
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/tiny_mce
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpmailer
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/extjs
+
+build-arch: build
+build-indep: build
+
+build:
+	# nothing to do
+
+# Build architecture-dependent files here.
+binary-arch: install
+
+# Build architecture-independent files here.
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs CHANGELOG.txt
+	dh_installdocs -XCOPYING.txt -Xlicense.txt
+	dh_installexamples
+	dh_link
+	dh_fixperms
+	dh_compress
+	dh_installcron
+	dh_installdebconf -pglpi
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep
+.PHONY: clean binary-indep install build-arch build-indep

@@ -1,0 +1,86 @@
+#! /bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+if [ -f /usr/share/dbconfig-common/dpkg/postrm.mysql ]; then
+    . /usr/share/dbconfig-common/dpkg/postrm.mysql
+    dbc_go glpi $@
+fi
+
+if [ "$1" = "purge" ]; then
+
+    if [ -h /usr/share/glpi/lib/extjs ]; then
+        rm /usr/share/glpi/lib/extjs
+    fi
+
+    restart=""
+    # Configuration for Apache 2.4
+    if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
+        . /usr/share/apache2/apache2-maintscript-helper
+        apache2_invoke disconf glpi
+    # other versions or webservers
+    else
+        db_get glpi/reconfigure || true
+
+        for websvrs in apache apache-perl apache-ssl apache2; do
+            rm -f /etc/$websvrs/conf.d/glpi
+        done
+
+        webservers="$RET"
+
+        for webserver in $webservers; do
+            webserver=${webserver%,}
+
+            case "$webserver" in
+                apache|apache-perl|apache-ssl|apache2)
+                    rm -f /etc/$webserver/conf.d/glpi
+                    test -x /usr/sbin/$webserver || continue
+                    restart="$restart $webserver"
+                    ;;
+            esac
+        done
+    fi
+
+    rm -f /etc/glpi/config/config_db.php
+    if which ucf >/dev/null 2>&1; then
+        ucf --debconf-ok --purge /etc/glpi/config/config_db.php
+    fi
+
+    # remove old sessions
+    if [ -d /var/lib/glpi/files ]; then
+      find /var/lib/glpi/files -type f -name "sess*" -exec rm -f {} \;
+      if [ -d /var/lib/glpi/files/_cron ]; then
+        rm -rf /usr/share/glpi/files/_cron
+      fi
+    fi
+
+    rmdir --ignore-fail-on-non-empty /etc/glpi || true
+
+    rm -f /usr/share/glpi/config
+    rm -f /usr/share/glpi/files
+
+    rm -f /etc/glpi/config/config_db.php
+fi
+
+
+if [ "$1" = purge ] && [ -e /usr/share/debconf/confmodule ]; then
+        . /usr/share/debconf/confmodule
+        db_purge
+fi
+
+if [ "$1" = "purge" ]; then
+    for webserver in $restart; do
+        webserver=${webserver%,}
+        if [ -x /usr/sbin/invoke-rc.d ]; then
+            invoke-rc.d $webserver force-reload ||:
+        else
+            /etc/init.d/$webserver force-reload ||:
+        fi
+    done
+fi
+
+
+#DEBHELPER#

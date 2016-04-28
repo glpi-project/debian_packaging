@@ -1,0 +1,5 @@
+glpi (0.90.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Alexandre DELAUNAY <adelaunay@adelaunay-ThinkPad-Edge-E320>  Thu, 28 Apr 2016 10:04:39 +0200

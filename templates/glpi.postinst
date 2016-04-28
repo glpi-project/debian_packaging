@@ -1,0 +1,130 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+db_version 2.0 || [ $? -lt 30 ]
+
+if [ "$1" = "configure" ]; then
+
+    reload_servers=""
+
+    #  Convert /usr/share/glpi/lib/extjs to a symlink on upgrades. (see: #699644)
+    if [ ! -L /usr/share/glpi/lib/extjs ] && [ -d /usr/share/glpi/lib/extjs ]; then
+        rm -rf --one-file-system /usr/share/glpi/lib/extjs
+        ln -s ../../javascript/extjs /usr/share/glpi/lib/extjs
+    fi
+
+    # configuration for apache 2.4
+    if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
+        if [ ! -f /etc/apache2/conf-available/glpi.conf -a ! -h /etc/apache2/conf-available/glpi.conf ]; then
+            ln -s /etc/glpi/apache.conf /etc/apache2/conf-available/glpi.conf
+        fi
+        . /usr/share/apache2/apache2-maintscript-helper
+        apache2_invoke enconf glpi
+    else
+        # older versions of apache
+        db_get glpi/webserver
+        webservers="$RET"
+
+        for webserver in $webservers; do
+            webserver=${webserver%,}
+            test -x /usr/sbin/$webserver || continue
+
+            case "$webserver" in
+                apache|apache-perl|apache-ssl)
+                    if [ -x /usr/sbin/modules-config ]; then
+                        if [ -f /usr/lib/apache/1.3/libphp4.so ]; then
+                            if ! grep -qs "^LoadModule php4_module " /etc/$webserver/modules.conf; then
+                                modules-config $webserver enable mod_php4
+                            fi
+                        elif [ -f /usr/lib/apache/1.3/libphp3.so ]; then
+                            if ! grep -qs "^LoadModule php3_module " /etc/$webserver/modules.conf; then
+                                modules-config $webserver enable mod_php3
+                            fi
+                        else
+                            if [ -f /usr/lib/apache/1.3/mod_actions.so ]; then
+                                if ! grep -qs "^LoadModule action_module " /etc/$webserver/modules.conf; then
+                                    modules-config $webserver enable mod_actions
+                                fi
+                            fi
+                            if [ -f /usr/lib/apache/1.3/mod_cgi.so ]; then
+                                if ! grep -qs "^LoadModule cgi_module " /etc/$webserver/modules.conf; then
+                                    modules-config $webserver enable mod_cgi
+                                fi
+                            fi
+                        fi
+                    fi
+                    if grep -qs "^Include /etc/glpi/apache.conf" /etc/$webserver/httpd.conf; then
+                        mv -f /etc/$webserver/httpd.conf /etc/$webserver/httpd.conf.old.glpi
+                        grep -v "^Include /etc/glpi/apache.conf" /etc/$webserver/httpd.conf.old.glpi \
+                            > /etc/$webserver/httpd.conf
+                    fi
+                    if ! grep -qs "^Include /etc/$webserver/conf.d" /etc/$webserver/httpd.conf; then
+                        cp -f /etc/$webserver/httpd.conf /etc/$webserver/httpd.conf.old.glpi
+                        echo "Include /etc/$webserver/conf.d" >> /etc/$webserver/httpd.conf
+                    fi
+                    if [ -f /etc/$webserver/httpd.conf.old.glpi ]; then
+                        mv -f /etc/$webserver/httpd.conf.old.glpi /etc/$webserver/httpd.conf.old
+                    fi
+                    mkdir -p /etc/$webserver/conf.d
+                    ;;
+                apache2)
+                    if [ -d /etc/$webserver/mods-enabled ]; then
+                        if [ ! -f /etc/$webserver/mods-enabled/actions.load -a ! -h /etc/$webserver/mods-enabled/actions.load ]; then
+                            ln -s /etc/$webserver/mods-available/actions.load /etc/$webserver/mods-enabled/actions.load
+                        fi
+                        if [ -f /etc/apache2/mods-available/php4.load ]; then
+                            if [ ! -f /etc/$webserver/mods-enabled/php4.load -a ! -h /etc/$webserver/mods-enabled/php4.load ]; then
+                                ln -s /etc/$webserver/mods-available/php4.load /etc/$webserver/mods-enabled/php4.load
+                            fi
+                        else
+                            if [ ! -f /etc/$webserver/mods-enabled/cgi.load -a ! -h /etc/$webserver/mods-enabled/cgi.load ]; then
+                                ln -s /etc/$webserver/mods-available/cgi.load /etc/$webserver/mods-enabled/cgi.load
+                            fi
+                        fi
+                    fi
+                    ;;
+            esac
+
+            case "$webserver" in
+                apache|apache-perl|apache-ssl|apache2)
+                    test -d /etc/$webserver/conf.d || continue
+                    if [ ! -f /etc/$webserver/conf.d/glpi -a ! -h /etc/$webserver/conf.d/glpi ]; then
+                        ln -s /etc/glpi/apache.conf /etc/$webserver/conf.d/glpi
+                    fi
+                    reload_servers="$reload_servers $webserver"
+                    ;;
+            esac
+        done
+    fi
+
+
+    dbc_first_version="0.72"
+    . /usr/share/dbconfig-common/dpkg/postinst.mysql
+    dbc_generate_include=template:/etc/glpi/config/config_db.php
+    dbc_generate_include_args="-U -o template_infile='/usr/share/glpi/install/mysql.conf'"
+    dbc_generate_include_owner="root:www-data"
+    dbc_generate_include_perms="0660"
+    dbc_go glpi $@
+
+    db_stop
+
+    [ -L /usr/share/glpi/files ] || ln -s /var/lib/glpi/files /usr/share/glpi/files
+    [ -L /usr/share/glpi/config ] || ln -s /etc/glpi/config /usr/share/glpi/config
+
+    # fix ownership
+    chown -R www-data:root /var/lib/glpi
+    chown -R www-data:root /etc/glpi/config
+
+    for webserver in $reload_servers; do
+        webserver=${webserver%,}
+        if [ -x /usr/sbin/invoke-rc.d ]; then
+            invoke-rc.d $webserver force-reload ||:
+        else
+            /etc/init.d/$webserver force-reload ||:
+        fi
+    done
+fi
+
+#DEBHELPER#

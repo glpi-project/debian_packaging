@@ -1,0 +1,66 @@
+This package was debianized by Alexandre DELAUNAY <delaunay.alexandre@gmail.com> on
+Fri, 28 Apr 1016 10:57:05 +0200.
+
+The current Debian maintainer is Pierre Chifflier <pollux@debian.org>
+
+It was downloaded from http://www.glpi-project.org/
+
+Upstream Authors: Alexandre DELAUNAY <delaunay.alexandre@gmail.com>,
+  Walid NOUH <wnouh@teclib.com>
+
+Copyright (C) 2015-2016 By Teclib'
+Copyright (C) 2003-2015 by the INDEPNET Development Team.
+
+License:
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License with
+ the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth
+ Floor, Boston, MA 02110-1301, USA.
+
+On Debian systems, the complete text of the GNU General Public
+License, version 2, can be found in /usr/share/common-licenses/GPL-2.
+
+Additional licenses:
+
+On Debian systems, the complete text of the GNU Lesser General Public
+License, can be found in /usr/share/common-licenses/LGPL.
+
+The files in lib/scriptaculous are licensed under the terms of the MIT License.
+On Debian systems, the complete text of the GNU Lesser General Public
+License, can be found in /usr/share/common-licenses/LGPL.
+
+Files under lib/ezpdf are Copyright Wayne Munro, R&OS Ltd and released under the
+public domain.
+
+Files under lib/extrajs are Copyright 2008 Ing. Jozef Sakáloš and are licensed under
+the GNU Lesser General Public License version 3 (See /usr/share/common-licenses/LGPL-3).
+
+Files under lib/icalcreator are Copyright 2007-2011 Kjell-Inge Gustafsson
+kigkonsult and are licensed under the GNU Lesser General Public License version
+2.1 or later (See /usr/share/common-licenses/LGPL-2.1).
+
+Files under lib/cache_lite have been written by Fabien MARTY <fab@php.net>
+and are licensed under the GNU Lesser General Public License version 2.1 or
+later (See /usr/share/common-licenses/LGPL-2.1).
+
+Files under lib/htmlawed/htmLawed.php are Copyright Santosh Patnaik and
+are dual licensed with LGPL 3 and GPL 2 or later.
+
+Files under lib/simplepie are Copyright Ryan Parman and Geoffrey Sneddon and
+are licensed under the BSD license (see /usr/share/common-licenses/BSD).
+
+Files under lib/Zend are Copyright Zend Technologies USA, Inc. and
+are licensed under the BSD license (see /usr/share/common-licenses/BSD).
+
+The Debian packaging is (C) 2016, Alexandre DELAUNAY <delaunay.alexandre@gmail.com> and
+is licensed under the GPL, see above.

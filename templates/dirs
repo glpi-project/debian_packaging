@@ -1,0 +1,5 @@
+usr/share/glpi
+usr/share/dbconfig-common/data/glpi/install
+usr/share/doc/glpi
+etc/glpi
+var/lib/glpi

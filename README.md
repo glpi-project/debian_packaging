@@ -18,13 +18,14 @@
  sudo pbuilder create
 
  sudo pbuilder update
-
 ```
 
 
 # prepare package
+
 Edit build.sh with your var
 edit files in template to match glpi version
 
 # generate package
+
 ./build.sh

@@ -25,4 +25,6 @@ edit files in template to match glpi version
 
 # generate package
 
+```sh
 ./build.sh
+```

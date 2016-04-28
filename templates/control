@@ -1,7 +1,7 @@
 Source: glpi
 Section: web
 Priority: optional
-Maintainer: Alexandre DELAUNAY <adelaunay@adelaunay-ThinkPad-Edge-E320>
+Maintainer: __FULLNAME__ <__MAIL__>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.6
 Homepage: http://glpi-project.org

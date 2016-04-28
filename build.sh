@@ -14,17 +14,21 @@ echo "url: $glpi_release_url"
 echo "version: $glpi_version"
 echo "filename: $glpi_orig_filename"
 
+
 # prepare folders
 mkdir -p sources
 mkdir -p packages
 
+
 # download release
 wget --no-check-certificate -O sources/$glpi_orig_filename $glpi_release_url
+
 
 # extract
 cd sources
 tar xf $glpi_orig_filename
 mv glpi glpi-$glpi_version
+
 
 # bootstrap debian package
 cd glpi-$glpi_version
@@ -32,15 +36,23 @@ dh_make --yes -c gpl2  --single \
  --file ../../sources/$glpi_orig_filename
 cd debian
 rm -rf *ex *EX README*
-cp ../../templates/* debian
+
+
+# copy and fill templates
+cp ../../../templates/* .
+find . -type f -exec sed -i -e "s/__FULLNAME__/$DEBFULLNAME/" -e "s/__MAIL__/$DEBMAIL/" {} \;
+
 
 #generate deb
+cd ..
 debuild -k0x$gpg_key -S -sa --lintian-opts -i
 cd ..
 sudo pbuilder build *.dsc
 
+
 # move deb files
 sudo mv /var/cache/pbuilder/result/* ../packages
+
 
 # clean (removed untracked files and folders)
 #git clean -f -d

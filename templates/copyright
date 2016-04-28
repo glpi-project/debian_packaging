@@ -1,4 +1,4 @@
-This package was debianized by Alexandre DELAUNAY <delaunay.alexandre@gmail.com> on
+This package was debianized by __FULLNAME__ <__MAIL__> on
 Fri, 28 Apr 1016 10:57:05 +0200.
 
 The current Debian maintainer is Pierre Chifflier <pollux@debian.org>
@@ -62,5 +62,5 @@ are licensed under the BSD license (see /usr/share/common-licenses/BSD).
 Files under lib/Zend are Copyright Zend Technologies USA, Inc. and
 are licensed under the BSD license (see /usr/share/common-licenses/BSD).
 
-The Debian packaging is (C) 2016, Alexandre DELAUNAY <delaunay.alexandre@gmail.com> and
+The Debian packaging is (C) 2016, __FULLNAME__ <__MAIL__> and
 is licensed under the GPL, see above.

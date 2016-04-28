@@ -1,5 +1,6 @@
 glpi (0.90.3-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
+  * See detailled changelog : https://github.com/glpi-project/glpi/issues?q=milestone:0.90.3
 
- -- Alexandre DELAUNAY <adelaunay@adelaunay-ThinkPad-Edge-E320>  Thu, 28 Apr 2016 10:04:39 +0200
+ -- Alexandre DELAUNAY <delaunay.alexandre@gmail.com>  Thu, 28 Apr 2016 10:04:39 +0200

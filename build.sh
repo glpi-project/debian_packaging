@@ -47,7 +47,7 @@ mv ../../cliupdate.php .
 
 
 # copy and fill templates
-cp ../../../templates/* .
+cp -R ../../../templates/* .
 find . -type f -exec sed -i -e "s/__FULLNAME__/$DEBFULLNAME/" -e "s/__MAIL__/$DEBMAIL/" {} \;
 
 

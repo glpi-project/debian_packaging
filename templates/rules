@@ -70,7 +70,6 @@ install: build
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpmailer
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/simplepie
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/tcpdf
-	rm -rf $(DESTDIR)/usr/share/glpi/lib/zeta
 	# regenerate gettext files
 	for po in $(DESTDIR)/usr/share/glpi/locales/*.po ; do \
 		msgfmt $$po -o $$(dirname $$po)/$$(basename $$po .po).mo ; \

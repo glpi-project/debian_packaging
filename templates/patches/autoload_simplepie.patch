@@ -1,0 +1,15 @@
+diff --git a/inc/autoload.function.php b/inc/autoload.function.php
+index 78dfeaa..3e3d363 100644
+--- a/inc/autoload.function.php
++++ b/inc/autoload.function.php
+@@ -377,8 +377,8 @@ class SimplePie_Autoloader {
+       if (strpos($class, 'SimplePie') !== 0) {
+          return;
+       }
+-      $filename = $this->path . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $class) .
+-                  '.php';
++      $filename = strtolower($this->path . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $class) .
++                  '.inc');
+       require_once($filename);
+    }
+ }

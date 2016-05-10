@@ -125,7 +125,7 @@ if [ "$1" = "configure" ]; then
     done
 
     # Launch upgrade of glpi
-    php -q -f /usr/share/glpi/tools/cliupdate.php -- --upgrade --force
+    php -q -f /usr/share/glpi/tools/cliupdate.php -- --upgrade --optimize
 fi
 
 #DEBHELPER#

@@ -10,7 +10,7 @@ Homepage: http://glpi-project.org
 #Vcs-Browser: https://anonscm.debian.org/gitweb/?p=collab-maint/glpi.git;a=summary
 
 Package: glpi
-Architecture: any
+Architecture: all
 Depends: apache2 | apache | apache-ssl | apache-perl | httpd,
     php5 | php5-cgi | libapache2-mod-php5,
     php5-cli,

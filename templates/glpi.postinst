@@ -94,7 +94,9 @@ if [ "$1" = "configure" ]; then
         done
     fi
 
-    ln -s /etc/glpi/logrotate.conf /etc/logrotate.d/glpi
+    if [ ! -f /etc/glpi/logrotate.conf -a ! -h /etc/glpi/logrotate.conf ]; then
+        ln -s /etc/glpi/logrotate.conf /etc/logrotate.d/glpi
+    fi
 
     APACHE_USER=$(ps axho user:30,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}')
 

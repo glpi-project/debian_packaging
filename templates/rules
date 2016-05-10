@@ -10,6 +10,7 @@ GCONFDIR=$(DESTDIR)/etc/glpi
 GCONFDIR2=$(DESTDIR)/etc/glpi/config
 GVARDIR=$(DESTDIR)/var/lib/glpi
 GLOGDIR=$(DESTDIR)/var/log/glpi
+GTOOLSDIR=$(GDIR)/tools
 
 clean:
 	dh_testdir
@@ -28,6 +29,7 @@ install: build
 	install -m 755 -d $(GCONFDIR2)
 	install -m 755 -d $(GVARDIR)
 	install -m 755 -d $(GLOGDIR)
+	install -m 755 -d $(GTOOLSDIR)
 	install -m 644 *.php $(GDIR)
 	install -m 644 *.js $(GDIR)
 	for dir in * ; do \
@@ -50,6 +52,7 @@ install: build
 	install -m 644 debian/apache.conf $(GCONFDIR)
 	install -m 644 debian/logrotate.conf $(GCONFDIR)
 	install -m 644 debian/mysql.conf $(DESTDIR)/usr/share/glpi/install/
+	install -m 644 debian/cliupdate.php $(GTOOLSDIR)
 	chmod +x $(DESTDIR)/usr/share/glpi/scripts/*.sh
 	# dbconfig stuff
 	install -m 644 install/mysql/glpi-0.90-empty.sql $(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql

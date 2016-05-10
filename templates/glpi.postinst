@@ -121,6 +121,9 @@ if [ "$1" = "configure" ]; then
             /etc/init.d/$webserver force-reload ||:
         fi
     done
+
+    # Launch upgrade of glpi
+    php -q -f /usr/share/glpi/tools/cliupdate.php --upgrade --force
 fi
 
 #DEBHELPER#

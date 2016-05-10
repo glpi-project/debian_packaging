@@ -15,10 +15,6 @@ gpg --gen-key
 echo "COMPONENTS=\"main restricted universe multiverse\"" | sudo tee -a /etc/pbuilderrc
 sudo pbuilder create
 sudo pbuilder update
-
-sudo ARCH=amd64 pbuilder --create
-sudo ARCH=i386 pbuilder --create
-sudo ARCH=armhf pbuilder --create
 ```
 
 

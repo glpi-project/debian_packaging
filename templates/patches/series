@@ -1,1 +1,3 @@
 00-autoload_simplepie.patch
+01-autoload_zend.patch
+02-cron.patch

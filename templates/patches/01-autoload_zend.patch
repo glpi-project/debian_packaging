@@ -1,14 +1,16 @@
-diff -up inc/autoload.function.php.old inc/autoload.function.php
---- inc/autoload.function.php.old	2016-02-18 14:45:41.167015090 +0100
-+++ inc/autoload.function.php	2016-02-18 14:47:19.277404208 +0100
-@@ -328,10 +328,14 @@ function glpi_autoload($classname) {
+diff --git a/inc/autoload.function.php b/inc/autoload.function.php
+index 78dfeaa..aed67ba 100644
+--- a/inc/autoload.function.php
++++ b/inc/autoload.function.php
+@@ -332,10 +332,14 @@ function glpi_autoload($classname) {
  // Use spl autoload to allow stackable autoload.
  spl_autoload_register('glpi_autoload');
  
+-require_once (GLPI_ZEND_PATH . '/Loader/StandardAutoloader.php');
 +if (file_exists(GLPI_ZEND_PATH . '/autoload.php')) {
 +  require_once (GLPI_ZEND_PATH . '/autoload.php');
 +} else {
- require_once (GLPI_ZEND_PATH . '/Loader/StandardAutoloader.php');
++require_oncerequire_once (GLPI_ZEND_PATH . '/Loader/StandardAutoloader.php');
  $option = array(Zend\Loader\StandardAutoloader::LOAD_NS => array('Zend' => GLPI_ZEND_PATH));
  $loader = new Zend\Loader\StandardAutoloader($option);
  $loader->register();

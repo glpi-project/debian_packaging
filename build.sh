@@ -36,8 +36,8 @@ mv glpi glpi-$glpi_version
 
 
 # bootstrap debian package
+mkdir -p glpi-$glpi_version/debian
 cd glpi-$glpi_version/debian
-rm -rf *ex *EX README*
 
 # insert cliupdate
 mv ../../cliupdate.php .

@@ -10,7 +10,7 @@ index 78dfeaa..aed67ba 100644
 +if (file_exists(GLPI_ZEND_PATH . '/autoload.php')) {
 +  require_once (GLPI_ZEND_PATH . '/autoload.php');
 +} else {
-+require_oncerequire_once (GLPI_ZEND_PATH . '/Loader/StandardAutoloader.php');
++require_once (GLPI_ZEND_PATH . '/Loader/StandardAutoloader.php');
  $option = array(Zend\Loader\StandardAutoloader::LOAD_NS => array('Zend' => GLPI_ZEND_PATH));
  $loader = new Zend\Loader\StandardAutoloader($option);
  $loader->register();

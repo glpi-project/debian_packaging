@@ -36,10 +36,7 @@ mv glpi glpi-$glpi_version
 
 
 # bootstrap debian package
-cd glpi-$glpi_version
-dh_make --yes -c gpl2  --single \
- --file ../../sources/$glpi_orig_filename
-cd debian
+cd glpi-$glpi_version/debian
 rm -rf *ex *EX README*
 
 # insert cliupdate

@@ -1,0 +1,89 @@
+# Swedish translation for glpi.
+# Copyright (C) 2077 Free Software Foundation, Inc
+# This file is distributed under the same license as the glpi package.
+# Daniel Nylander <po@danielnylander.se>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: glpi\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-29 21:18+0200\n"
+"PO-Revision-Date: 2007-03-04 11:43+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache"
+msgstr "apache"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-ssl"
+msgstr "apache-ssl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-perl"
+msgstr "apache-perl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache2"
+msgstr "apache2"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid "Web server to reconfigure automatically:"
+msgstr "Webbserver att konfigurera om automatiskt:"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid ""
+"If you do not select a web server to reconfigure automatically, glpi will "
+"not be usable until you reconfigure your webserver to enable glpi."
+msgstr ""
+"Om du inte väljer en webbserver att konfigurera om automatiskt kommer glpi "
+"inte att vara användbar tills du konfigurerar om din webbserver för att "
+"aktivera glpi."
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid "glpi configuration"
+msgstr "Konfiguration av glpi"
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid ""
+"Please point your browser to http://<server>/glpi/ to finish the "
+"configuration."
+msgstr ""
+"Peka din webbläsare till http://<server>/glpi/ för att färdigställa "
+"konfigurationen."
+
+#~ msgid "apache, apache-ssl, apache-perl, apache2"
+#~ msgstr "apache, apache-ssl, apache-perl, apache2"
+
+#~ msgid "Should ${webserver} be restarted?"
+#~ msgstr "Ska ${webserver} startas om?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing "
+#~ "invoke-rc.d ${webserver} restart."
+#~ msgstr ""
+#~ "Kom ihåg att för att aktivera den nya konfigurationen måste ${webserver} "
+#~ "startas om. Du kan även starta om ${webserver} genom att manuellt köra "
+#~ "invoke-rc.d ${webserver} restart."

@@ -1,0 +1,90 @@
+# translation of glpi_0.68.3-1_cs-utf8.po to czech
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jakub Kasparec <mr.k@centrum.cz>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: glpi_0.68.3-1_cs-utf8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-29 21:18+0200\n"
+"PO-Revision-Date: 2007-01-27 20:27+0100\n"
+"Last-Translator: Jakub Kasparec <mr.k@centrum.cz>\n"
+"Language-Team: czech <debian-l10n-czech@lists.debian.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache"
+msgstr "apache"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-ssl"
+msgstr "apache-ssl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-perl"
+msgstr "apache-perl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache2"
+msgstr "apache2"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid "Web server to reconfigure automatically:"
+msgstr "Který webový server překonfigurovat automaticky:"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid ""
+"If you do not select a web server to reconfigure automatically, glpi will "
+"not be usable until you reconfigure your webserver to enable glpi."
+msgstr ""
+"Jestliže nezvolíte webový server, který se má automaticky překonfigurovat, "
+"nebudete moci použít glpi do té doby, dokud nenastavíte svůj webový server "
+"pro použití s glpi."
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid "glpi configuration"
+msgstr "konfigurace glpi"
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid ""
+"Please point your browser to http://<server>/glpi/ to finish the "
+"configuration."
+msgstr ""
+"K dokončení instalace prosím otevřete ve svém prohlížeči následující adresu: "
+"http://<server>/glpi/ ."
+
+#~ msgid "apache, apache-ssl, apache-perl, apache2"
+#~ msgstr "apache, apache-ssl, apache-perl, apache2"
+
+#~ msgid "Should ${webserver} be restarted?"
+#~ msgstr "Má se server ${webserver} restartovat?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing "
+#~ "invoke-rc.d ${webserver} restart."
+#~ msgstr ""
+#~ "Nezapomeňte prosím, že pro aktivaci vaší nové konfigurace je potřeba "
+#~ "server ${webserver} restartovat. Server můžete také restartovat ručně "
+#~ "zadáním příkazu invoke-rc.d ${webserver} restart."

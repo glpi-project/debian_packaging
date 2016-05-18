@@ -1,0 +1,95 @@
+# translation of ro.po to Romanian
+# Romanian translations for PACKAGE package
+# Traducerea în limba română pentru pachetul PACKAGE.
+# Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Eddy Petrisor <eddy.petrisor@gmail.com>, 2007.
+# Eddy Petrișor <eddy.petrisor@gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: ro\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-29 21:18+0200\n"
+"PO-Revision-Date: 2007-03-05 00:08+0200\n"
+"Last-Translator: Eddy Petrișor <eddy.petrisor@gmail.com>\n"
+"Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache"
+msgstr "apache"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-ssl"
+msgstr "apache-ssl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-perl"
+msgstr "apache-perl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache2"
+msgstr "apache2"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid "Web server to reconfigure automatically:"
+msgstr "Serveul de web reconfigurat automat:"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid ""
+"If you do not select a web server to reconfigure automatically, glpi will "
+"not be usable until you reconfigure your webserver to enable glpi."
+msgstr ""
+"Dacă nu selectaţi un server de web care să fie reconfigurat automat, glpi nu "
+"va fi utilizabil până când nu veţi fi reconfigurat serverul de web să-l "
+"activeze."
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid "glpi configuration"
+msgstr "Configurarea glpi"
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid ""
+"Please point your browser to http://<server>/glpi/ to finish the "
+"configuration."
+msgstr ""
+"Vizitaţi cu un navigator pagina http://<server>/glpi/ pentru a finaliza "
+"configurarea."
+
+#~ msgid "apache, apache-ssl, apache-perl, apache2"
+#~ msgstr "apache, apache-ssl, apache-perl, apache2"
+
+#~ msgid "Should ${webserver} be restarted?"
+#~ msgstr "Se reporneşte ${webserver}?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing "
+#~ "invoke-rc.d ${webserver} restart."
+#~ msgstr ""
+#~ "Reţineţi, pentru a activa noua configuraţie ${webserver} trebuie "
+#~ "repornit. ${webserver} poate fi repornit şi manual cu comanda invoke-rc.d "
+#~ "${webserver} restart."

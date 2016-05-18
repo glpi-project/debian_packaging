@@ -1,0 +1,88 @@
+# Translation of glpi debconf templates to German
+# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2006, 2007.
+# This file is distributed under the same license as the glpi package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: glpi\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-29 21:18+0200\n"
+"PO-Revision-Date: 2007-01-09 18:30+0100\n"
+"Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
+"Language-Team: de <debian-l10n-german@lists.debian.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache"
+msgstr "Apache"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-ssl"
+msgstr "Apache-ssl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-perl"
+msgstr "Apache-perl"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache2"
+msgstr "Apache2"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid "Web server to reconfigure automatically:"
+msgstr "Webserver, der automatisch konfiguriert werden soll:"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid ""
+"If you do not select a web server to reconfigure automatically, glpi will "
+"not be usable until you reconfigure your webserver to enable glpi."
+msgstr ""
+"Falls Sie keinen Webserver zum automatischen konfigurieren auswählen, wird "
+"Glpi nicht benutzbar sein, bis Sie Ihren Webserver rekonfigurieren, um Glpi "
+"zu aktivieren."
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid "glpi configuration"
+msgstr "Glpi-Konfiguration"
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid ""
+"Please point your browser to http://<server>/glpi/ to finish the "
+"configuration."
+msgstr ""
+"Bitte rufen Sie in Ihrem Browser http://<server>/glpi/ auf, um die "
+"Konfiguration zu beenden."
+
+#~ msgid "apache, apache-ssl, apache-perl, apache2"
+#~ msgstr "Apache, Apache-ssl, Apache-perl, Apache2"
+
+#~ msgid "Should ${webserver} be restarted?"
+#~ msgstr "Soll ${webserver} neu gestartet werden?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing "
+#~ "invoke-rc.d ${webserver} restart."
+#~ msgstr ""
+#~ "Denken Sie daran, dass ${webserver} neu gestartet werden muss, um die "
+#~ "neue Konfiguration zu aktivieren. Sie können ${webserver} auch manuell "
+#~ "neu starten, indem Sie »invoke-rc.d ${webserver} restart« ausführen."

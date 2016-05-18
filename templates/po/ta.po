@@ -1,0 +1,87 @@
+# translation of glpi.po to TAMIL
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: glpi\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-29 21:18+0200\n"
+"PO-Revision-Date: 2007-03-05 17:18+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: TAMIL <ubuntu-l10n-tam@lists.ubuntu.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache"
+msgstr "அபாசே"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-ssl"
+msgstr "அபாசே-எஸ்எஸ்எல்"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache-perl"
+msgstr "அபாசே-பெர்ல்"
+
+#. Type: multiselect
+#. Choices
+#: ../glpi.templates:1001
+msgid "apache2"
+msgstr "அபாசே2"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid "Web server to reconfigure automatically:"
+msgstr "தானியங்கியாக வலை சேவையகம் மீள் வடிவமைக்கும்:"
+
+#. Type: multiselect
+#. Description
+#: ../glpi.templates:1002
+msgid ""
+"If you do not select a web server to reconfigure automatically, glpi will "
+"not be usable until you reconfigure your webserver to enable glpi."
+msgstr ""
+"தானியங்கியாக மீள் வடிவமைக்க ஒரு வலை சேவையகத்தை தேர்ந்தெடுக்கவில்லையானால் ஜிஎல்பிஐ ஐ "
+"செயலாக்க உங்கள் வலை சேவையகத்தை அமைக்கும் வரை ஜிஎல்பிஐ உபயோகப் படாது."
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid "glpi configuration"
+msgstr "ஜிஎல்பிஐ வடிவமைப்பு"
+
+#. Type: note
+#. Description
+#: ../glpi.templates:2001
+msgid ""
+"Please point your browser to http://<server>/glpi/ to finish the "
+"configuration."
+msgstr "வடிவமைப்பை முடிக்க உலாவியை http://<server>/glpi/ க்கு திசை திருப்பவும்."
+
+#~ msgid "apache, apache-ssl, apache-perl, apache2"
+#~ msgstr "அபாசே, அபாசே-எஸ்எஸ்எல், அபாசே-பெர்ல், அபாசே2"
+
+#~ msgid "Should ${webserver} be restarted?"
+#~ msgstr "${webserver} ஐ மீள் துவக்கவா?"
+
+#~ msgid ""
+#~ "Remember that in order to activate the new configuration ${webserver} has "
+#~ "to be restarted. You can also restart ${webserver} by manually executing "
+#~ "invoke-rc.d ${webserver} restart."
+#~ msgstr ""
+#~ "புதிய வடிவமைப்பை செயல் படுத்த ${webserver} மீண்டும் துவக்கப் பட வேண்டும் என நினைவு "
+#~ "கொள்ளவும். நீங்கள் ${webserver} ஐ கைமுறையாகக் கூட rc.d ${webserver} restart "
+#~ "கட்டளையை பயன் படுத்தி மீண்டும் துவக்கலாம்."

@@ -1,3 +1,4 @@
+__Choices: apache, apache-ssl, apache-perl, apache2
 Template: glpi/webserver
 Type: multiselect
 Default: apache, apache-ssl, apache-perl, apache2

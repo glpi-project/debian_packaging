@@ -5,7 +5,7 @@
 apt install debhelper cdbs lintian build-essential fakeroot devscripts pbuilder dh-make debootstrap
 ```
 
-* gpg key (not you key sub part after slash):
+* gpg key (note you key sub part after slash):
 ```sh
 gpg --gen-key
 ```
@@ -20,7 +20,7 @@ sudo pbuilder update
 
 # prepare package
 
-Edit build.sh with your var
+Edit build.sh with your vars
 edit files in template to match glpi version
 
 # generate package

@@ -1,12 +1,12 @@
 Template: glpi/webserver
 Type: multiselect
 Default: apache, apache-ssl, apache-perl, apache2
-Description: Web server to reconfigure automatically:
+_Description: Web server to reconfigure automatically:
  If you do not select a web server to reconfigure automatically, glpi will
  not be usable until you reconfigure your webserver to enable glpi.
 
 Template: glpi/configuration
 Type: note
-Description: glpi configuration
+_Description: glpi configuration
  Please point your browser to http://<server>/glpi/ to finish the
  configuration.

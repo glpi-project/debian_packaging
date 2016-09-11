@@ -12,13 +12,13 @@ Homepage: http://glpi-project.org
 Package: glpi
 Architecture: all
 Depends: apache2 | apache | apache-ssl | apache-perl | httpd,
-    php5 | php5-cgi | libapache2-mod-php5,
-    php5-cli,
-    php5-common,
-    php5-gd,
-    php5-imap,
-    php5-ldap,
-    php5-mysql | php5-mysqlnd,
+    php7.0 | php7.0-cgi | libapache2-mod-php7.0 | php5 | php5-cgi | libapache2-mod-php5,
+    php7.0-cli | php5-cli,
+    php7.0-common | php5-common,
+    php7.0-gd | php5-gd,
+    php7.0-imap | php5-imap,
+    php7.0-ldap | php5-ldap,
+    php7.0-mysql | php7.0-mysqlnd | php5-mysql | php5-mysqlnd,
     debconf (>= 0.2.26) | debconf-2.0,
     dbconfig-common,
     fonts-freefont-ttf,
@@ -29,23 +29,36 @@ Depends: apache2 | apache | apache-ssl | apache-perl | httpd,
     logrotate,
     mysql-client,
     mysql-server,
+    libjs-jquery-timepicker,
+    libjs-bootstrap,
+    libjs-jquery-cookie,
+    libjs-jquery-ui,
+    libjs-jquery-ui-theme-ui-lightness,
+    tinymce,
     ${misc:Depends}
-Description: GLPi is a Free Asset and IT Management Software package
- GLPi stands for **Gestionnaire Libre de Parc Informatique** is a Free Asset and IT Management Software package, that provides ITIL Service Desk features, licenses tracking and software auditing.
+Description: Free Asset and IT Management Software package
+ Name GLPi stands for **Gestionnaire Libre de Parc Informatique**
+ is a Free Asset and IT Management Software package,
+ that provides ITIL Service Desk features, licenses tracking
+ and software auditing.
  .
  GLPi features:
- * Multilingual support: 45 translations available
- * Inventory of computers, peripherals, network printers and any associated components through an interface, with inventory tools such as: OCS Inventory or FusionInventory
- * Assignment of equipment by geographical area to users and groups
- * Item lifecycle management
- * Asset reservation
- * Licenses management (ITIL compliant)
- * Management of warranty and financial information (purchase order, warranty and extension, damping)
- * Management of contracts, contacts, documents related to inventory items
- * Incidents, requests, problems and changes management
- * Ticket creation through emails, end-user or technician interface
- * Ticket lifecycle (assignment, tickets scheduling, solutions, etc.)
- * Knowledge base and Frequently-Asked Questions (FAQ)
- * Report generator: hardware, network or interventions (support)
+  * Multilingual support: 45 translations available
+  * Inventory of computers, peripherals, network printers and
+  any associated components through an interface,
+  with inventory tools such as: OCS Inventory or FusionInventory
+  * Assignment of equipment by geographical area to users and groups
+  * Item lifecycle management
+  * Asset reservation
+  * Licenses management (ITIL compliant)
+  * Management of warranty and financial information
+  (purchase order, warranty and extension, damping)
+  * Management of contracts, contacts, documents related to inventory items
+  * Incidents, requests, problems and changes management
+  * Ticket creation through emails, end-user or technician interface
+  * Ticket lifecycle (assignment, tickets scheduling, solutions, etc.)
+  * Knowledge base and Frequently-Asked Questions (FAQ)
+  * Report generator: hardware, network or interventions (support)
  .
- Moreover, GLPi supports many [plugins](http://plugins.glpi-project.org) that provide additional features.
+ Moreover, GLPi supports many [plugins](http://plugins.glpi-project.org)
+ that provide additional features.

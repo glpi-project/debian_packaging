@@ -11,6 +11,7 @@ GCONFDIR2=$(DESTDIR)/etc/glpi/config
 GVARDIR=$(DESTDIR)/var/lib/glpi
 GLOGDIR=$(DESTDIR)/var/log/glpi
 GTOOLSDIR=$(GDIR)/tools
+GLPI_DB_VERSION=0.90.1
 
 clean:
 	dh_testdir
@@ -55,7 +56,7 @@ install: build
 	install -m 644 debian/cliupdate.php $(GTOOLSDIR)
 	chmod +x $(DESTDIR)/usr/share/glpi/scripts/*.sh
 	# dbconfig stuff
-	install -m 644 install/mysql/glpi-0.90-empty.sql $(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
+	install -m 644 install/mysql/glpi-$(GLPI_DB_VERSION)-empty.sql $(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
 	# set default language to english
 	sed -i -e 's/fr_FR/en_GB/' \
 		$(DESTDIR)/usr/share/dbconfig-common/data/glpi/install/mysql
@@ -70,6 +71,28 @@ install: build
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/phpmailer
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/simplepie
 	rm -rf $(DESTDIR)/usr/share/glpi/lib/tcpdf
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/tiny_mce
+	rm -rf $(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-ui-timepicker-addon
+	# fix various lintian
+	# existing package / font
+	rm -f  $(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-ui-scrollable-tabs/js/jquery.mousewheel.js
+	rm -f  $(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-gantt/js/jquery.cookie.js
+	rm -f  $(DESTDIR)/usr/share/glpi/lib/FreeSans.ttf
+	# lib/jqueryplugins/jquery-gantt/index.html
+	sed -i -e 's!http://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js!js/bootstrap.min.css!' \
+		 $(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-gantt/index.html
+	sed -i -e 's!http://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css!css/bootstrap.min.css!' \
+		 $(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-gantt/index.html
+	sed -i -e 's!http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css!css/prettify.min.css!' \
+		 $(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-gantt/index.html
+	# lib/jqueryplugins/jquery-ui-scrollable-tabs/index.html
+	sed -i -e 's!https://code.jquery.com/ui/1.11.4/themes/!jquery-ui-themes/!' \
+		$(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-ui-scrollable-tabs/index.html
+	sed -i -e 's!https://code.jquery.com/jquery-1.11.2.min.js!js/jquery.min.js!' \
+		$(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-ui-scrollable-tabs/index.html
+	sed -i -e 's!https://code.jquery.com/ui/1.11.3/jquery-ui.min.js!js/jquery-ui.min.js!' \
+		$(DESTDIR)/usr/share/glpi/lib/jqueryplugins/jquery-ui-scrollable-tabs/index.html
+	#
 	# regenerate gettext files
 	for po in $(DESTDIR)/usr/share/glpi/locales/*.po ; do \
 		msgfmt $$po -o $$(dirname $$po)/$$(basename $$po .po).mo ; \

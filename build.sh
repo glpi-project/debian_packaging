@@ -17,19 +17,23 @@ echo "filename: $glpi_orig_filename"
 
 
 # prepare folders
-mkdir -p sources
-mkdir -p packages
+[ -d sources ] || mkdir -p sources
+[ -d packages ] || mkdir -p packages
 
 
 # download release
-wget --no-check-certificate -O sources/$glpi_orig_filename $glpi_release_url
+[ -f sources/$glpi_orig_filename ] || wget --no-check-certificate -O sources/$glpi_orig_filename $glpi_release_url
 
 # download update script
-wget --no-check-certificate -O sources/cliupdate.php $cliupdate_file_url
+[ -f sources/cliupdate.php ] || wget --no-check-certificate -O sources/cliupdate.php $cliupdate_file_url
 
 
 # extract
 cd sources
+if [ -d glpi-$glpi_version ] 
+then 
+	rm -rf glpi-$glpi_version
+fi
 tar xf $glpi_orig_filename
 mv glpi glpi-$glpi_version
 
@@ -40,7 +44,7 @@ mkdir -p glpi-$glpi_version/debian
 cd glpi-$glpi_version/debian
 
 # insert cliupdate
-mv ../../cliupdate.php .
+cp ../../cliupdate.php .
 
 
 # copy and fill templates

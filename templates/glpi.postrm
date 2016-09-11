@@ -69,7 +69,7 @@ fi
 if [ "$1" = "purge" ]; then
     for webserver in $restart; do
         webserver=${webserver%,}
-        if [ -x /usr/sbin/invoke-rc.d ]; then
+	if which invoke-rc.d >/dev/null ; then
             invoke-rc.d $webserver force-reload ||:
         else
             /etc/init.d/$webserver force-reload ||:
